@@ -3,11 +3,11 @@
   connection: local
   gather_facts: False
   vars:
-    keypair: continuous-integration
-    instance_type: m1.small
-    security_group: sandbox
-    image: ami-d0f89fb9
-    region: us-east-1
+    keypair: narwhaledu
+    instance_type: t1.micro
+    security_group: narwhaledu
+    image: ami-0358ce33
+    region: us-west-2
   roles:
     - launch_instance
 
