@@ -96,10 +96,8 @@ have active.  Here click the 'Create Stack' button.  In the wizard you can give 
 name for your stack and pass in a template which defines the edX stack.  Use the
 `edx-reference-architecture.json` template in the `cloudformation_templates` directory.
 
-WARNING: This method results in this error [https://forums.aws.amazon.com/thread.jspa?threadID=128668&tstart=0#465464]
-
 #### Building with the CloudFormation CLI
-To build from the CloudFormation CLI you will have to first upload the configuration file to an S3 Bucket.  The easiest way to do this is to use `s3cmd`.
+To build from the CloudFormation CLI you will have to first upload the configuration file to an S3 Bucket.  The easiest way to do this is to use `s3put`.
 
 Setup S3 [http://s3tools.org/download]:
 ```
@@ -116,7 +114,9 @@ export AWS_CONFIG_FILE=~/.aws_config
 Build from CloudFormationCLI:
 ```
 s3put -b <BUCKET_NAME> cloudformation_templates/edx-reference-architecture.json
-aws cloudformation create-stack --stack-name <stack_name> --template-url https://s3.amazonaws.com/<bucket_name>/edx-reference-architecture.json --capabilities CAPABILITY_IAM
+aws cloudformation create-stack --stack-name <stack_name> --template-url \
+    https://s3.amazonaws.com/<bucket_name>/edx-reference-architecture.json \
+    --capabilities CAPABILITY_IAM
 ```
 
 ### Post Bringup Manual Commands
