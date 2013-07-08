@@ -106,17 +106,16 @@ Setup S3 [http://s3tools.org/download]:
 sudo python setup.py install
 ```
 
-Setup aws-cli:
+Setup aws-cli [https://aws.amazon.com/cli/]:
 ```
-git clone git@github.com:aws/aws-cli.git
-cd aws-cli
-sudo python setup.py install
+pip install awscli
+touch ~/.aws_config # see https://github.com/aws/aws-cli#getting-started
+export AWS_CONFIG_FILE=~/.aws_config
 ```
 
 Build from CloudFormationCLI:
 ```
 s3put -b <BUCKET_NAME> cloudformation_templates/edx-reference-architecture.json
-s3cmd put /path/to/edx-reference-architecture.json s3://<bucket_name>
 aws cloudformation create-stack --stack-name <stack_name> --template-url https://s3.amazonaws.com/<bucket_name>/edx-reference-architecture.json --capabilities CAPABILITY_IAM
 ```
 
