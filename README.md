@@ -43,13 +43,14 @@ To deploy the entire edX platform on a single ec2 instance
 run the following commands:
 
 ```
-git clone git@github.com:edx/configuration
-mkvirtualenv ansible
+git clone git@github.com:narwhalEDU/configuration.git
+source ~/.virtualenv/default/bin/activate
 cd configuration
-pip install -r ansible-requirements.txt
+sudo pip install -r ansible-requirements.txt
 cd playbooks
-(adjust the settings in edx_sandbox.yml)
-`ansible-playbook  -vvv --user=ubuntu edx_sandbox.yml -i inventory.ini -e 'secure_dir=secure_example`
+# Adjust the settings in edx_sandbox.yml
+# Create ~/.boto file [see https://github.com/edx/configuration#finding-your-hosts-via-boto]
+ansible-playbook -vvv --user=ubuntu edx_sandbox.yml -i inventory.ini -e 'secure_dir=secure_example'
 ```
 
 This will install the following services on a single instance
@@ -95,9 +96,13 @@ have active.  Here click the 'Create Stack' button.  In the wizard you can give 
 name for your stack and pass in a template which defines the edX stack.  Use the
 `edx-reference-architecture.json` template in the `cloudformation_templates` directory.
 
+WARNING: This method results in this error [https://forums.aws.amazon.com/thread.jspa?threadID=128668&tstart=0#465464]
+
 #### Building with the CloudFormation CLI
-To build from the CloudFormation CLI you will have to first upload the configuration
-file to an S3 Bucket.  The easiest way to do this is to use `s3cmd`.
+To build from the CloudFormation CLI you will have to first upload the configuration file to an S3 Bucket.  The easiest way to do this is to use `s3cmd`.
+
+Download S3: http://s3tools.org/download
+Install: sudo python setup.py install
 
 ```
 s3cmd put /path/to/edx-reference-architecture.json s3://<bucket_name>
