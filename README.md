@@ -101,10 +101,21 @@ WARNING: This method results in this error [https://forums.aws.amazon.com/thread
 #### Building with the CloudFormation CLI
 To build from the CloudFormation CLI you will have to first upload the configuration file to an S3 Bucket.  The easiest way to do this is to use `s3cmd`.
 
-Download S3: http://s3tools.org/download
-Install: sudo python setup.py install
-
+Setup S3 [http://s3tools.org/download]:
 ```
+sudo python setup.py install
+```
+
+Setup aws-cli:
+```
+git clone git@github.com:aws/aws-cli.git
+cd aws-cli
+sudo python setup.py install
+```
+
+Build from CloudFormationCLI:
+```
+s3put -b <BUCKET_NAME> cloudformation_templates/edx-reference-architecture.json
 s3cmd put /path/to/edx-reference-architecture.json s3://<bucket_name>
 aws cloudformation create-stack --stack-name <stack_name> --template-url https://s3.amazonaws.com/<bucket_name>/edx-reference-architecture.json --capabilities CAPABILITY_IAM
 ```
