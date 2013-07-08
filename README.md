@@ -40,7 +40,7 @@ over time, so expect frequent changes.
 
 
 To deploy the entire edX platform on a single ec2 instance
-run the following commands:
+run the following commands from a local linux machine:
 
 ```
 git clone git@github.com:narwhalEDU/configuration.git
@@ -62,7 +62,7 @@ This will install the following services on a single instance
 * memcache (running locally)
 
 Note: In order for mail to work properly you will need to add AWS credentials for an account that
-has SES permissions, see `secure\_example/vars/edxapp\_sandbox.yml`
+has SES permissions, see `secure_example/vars/edxapp_sandbox.yml`
 
 ### Building the stack with CloudFormation
 
