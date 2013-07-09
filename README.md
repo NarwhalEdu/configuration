@@ -38,6 +38,14 @@ over time, so expect frequent changes.
 
 ### Quick start - Building the stack on a single server
 
+This will install the following services on a single instance
+
+* edX lms (django/python) for courseware
+* edX studio (django/python) for course authoring
+* mysql (running locally)
+* mongo (running locally)
+* memcache (running locally)
+
 To deploy the entire edX platform on a single ec2 instance
 run the following commands from a local linux machine:
 
@@ -60,7 +68,7 @@ region: us-west-2
 
 Add AWS credentials for an account that has SES permissions to `secure_example/vars/edxapp_sandbox.yml`
 
-Create ~/.boto file [see https://github.com/edx/configuration#finding-your-hosts-via-boto]
+Create ~/.boto file (see https://github.com/edx/configuration#finding-your-hosts-via-boto)
 ```
 [Credentials]
 aws_access_key_id = <KEY_ID>
@@ -76,17 +84,6 @@ Deploy edx on EC2:
 ```
 ansible-playbook -vvv --user=ubuntu edx_sandbox.yml -i inventory.ini -e 'secure_dir=secure_example'
 ```
-
-This will install the following services on a single instance
-
-* edX lms (django/python) for courseware
-* edX studio (django/python) for course authoring
-* mysql (running locally)
-* mongo (running locally)
-* memcache (running locally)
-
-Note: In order for mail to work properly you will need to add AWS credentials for an account that
-has SES permissions, see `secure_example/vars/edxapp_sandbox.yml`
 
 ### Building the stack with CloudFormation
 
@@ -123,12 +120,12 @@ name for your stack and pass in a template which defines the edX stack.  Use the
 #### Building with the CloudFormation CLI
 To build from the CloudFormation CLI you will have to first upload the configuration file to an S3 Bucket.  The easiest way to do this is to use `s3put`.
 
-Setup S3 [http://s3tools.org/download]:
+Setup S3 (http://s3tools.org/download):
 ```
 sudo python setup.py install
 ```
 
-Setup aws-cli [https://aws.amazon.com/cli/]:
+Setup aws-cli (https://aws.amazon.com/cli/):
 ```
 pip install awscli
 touch ~/.aws_config # see https://github.com/aws/aws-cli#getting-started
