@@ -38,7 +38,6 @@ over time, so expect frequent changes.
 
 ### Quick start - Building the stack on a single server
 
-
 To deploy the entire edX platform on a single ec2 instance
 run the following commands from a local linux machine:
 
@@ -48,8 +47,33 @@ source ~/.virtualenv/default/bin/activate
 cd configuration
 sudo pip install -r ansible-requirements.txt
 cd playbooks
-# Adjust the settings in edx_sandbox.yml
-# Create ~/.boto file [see https://github.com/edx/configuration#finding-your-hosts-via-boto]
+```
+
+Adjust the settings in `edx_sandbox.yml`:
+```
+keypair: <KEYPAIR>
+instance_type: t1.micro
+security_group: <SECURITY_GROUP>
+image: ami-<IMG>
+region: us-west-2
+```
+
+Add AWS credentials for an account that has SES permissions to `secure_example/vars/edxapp_sandbox.yml`
+
+Create ~/.boto file [see https://github.com/edx/configuration#finding-your-hosts-via-boto]
+```
+[Credentials]
+aws_access_key_id = <KEY_ID>
+aws_secret_access_key = <SECRET_KEY>
+
+[Boto]
+debug = 1
+ec2_region_name = us-west-2
+ec2_region_endpoint = ec2.us-west-2.amazonaws.com
+```
+
+Deploy edx on EC2:
+```
 ansible-playbook -vvv --user=ubuntu edx_sandbox.yml -i inventory.ini -e 'secure_dir=secure_example'
 ```
 
