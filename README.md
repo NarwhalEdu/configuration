@@ -68,7 +68,7 @@ region: us-west-2
 
 Add AWS credentials for an account that has SES permissions to `secure_example/vars/edxapp_sandbox.yml`
 
-Create ~/.boto file (see https://github.com/edx/configuration#finding-your-hosts-via-boto)
+Create [~/.boto file](see https://github.com/edx/configuration#finding-your-hosts-via-boto)
 ```
 [Credentials]
 aws_access_key_id = <KEY_ID>
@@ -120,12 +120,12 @@ name for your stack and pass in a template which defines the edX stack.  Use the
 #### Building with the CloudFormation CLI
 To build from the CloudFormation CLI you will have to first upload the configuration file to an S3 Bucket.  The easiest way to do this is to use `s3put`.
 
-Setup S3 (http://s3tools.org/download):
+Setup [S3](http://s3tools.org/download):
 ```
 sudo python setup.py install
 ```
 
-Setup aws-cli (https://aws.amazon.com/cli/):
+Setup [aws-cli](https://aws.amazon.com/cli/):
 ```
 pip install awscli
 touch ~/.aws_config # see https://github.com/aws/aws-cli#getting-started
