@@ -57,7 +57,7 @@
     "SSLCertificateARN":{
       "Description":"The ARN for an SSL certificate to use with the edxapp.",
       "Type":"String",
-      "Default":"arn:aws:iam::372153017832:server-certificate/dummy"
+      "Default":"arn:aws:iam::494524483034:user/narwhal-server"
     },
     "BastionInstanceType":{
       "Description":"Bastion Host EC2 instance type",
